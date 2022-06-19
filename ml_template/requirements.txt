@@ -1,0 +1,12 @@
+configargparse
+psycopg2
+torch
+sqlalchemy
+scipy
+pyyaml
+tensorboard
+tensorflow
+statsmodels
+torchmetrics
+tables
+sklearn
