@@ -7,24 +7,16 @@ class Evaluation:
 
     def __init__(self, config):
         self.result_types = {
-            "speed": "speed",
-            "label": "label",
-            "classification": "classification"
+            "speed": "speed"
         }
         self.table_name = {
-            self.result_types["speed"]: config.speedResultTable,
-            self.result_types["label"]: config.labelResultTable,
-            self.result_types["classification"]: config.classificationResultTable
+            self.result_types["speed"]: config.speedResultTable
         }
         self.metrics = {
-            self.result_types["speed"]: {},
-            self.result_types["label"]: {},
-            self.result_types["classification"]: {}
+            self.result_types["speed"]: {}
         }
         self.data_types = {
             self.result_types["speed"]: {},
-            self.result_types["label"]: {},
-            self.result_types["classification"]: {}
         }
         self.config = config
 
@@ -39,24 +31,6 @@ class Evaluation:
         self.metrics[self.result_types["speed"]]["bestid"] = bestid
         self.metrics[self.result_types["speed"]]["time_spent"] = time_spent
         self.metrics[self.result_types["speed"]]["weights"] = weights
-
-    def compute_label_metric(self, metrics, bestid=0, time_spent=0):
-        # I use this function for speed
-        self.metrics[self.result_types["label"]]["l_mae"] = metrics[0]
-        self.metrics[self.result_types["label"]]["l_mape"] = metrics[1]
-        self.metrics[self.result_types["label"]]["l_rmse"] = metrics[2]
-        self.metrics[self.result_types["label"]]["l_bestid"] = bestid
-        self.metrics[self.result_types["label"]]["l_time_spent"] = time_spent
-
-    def compute_classification_metric(self, confusion_matrix, precision, recall, f_score):
-        # I use this function for speed
-        num_concepts = confusion_matrix.shape[0]
-        for i in range(num_concepts):
-            self.metrics[self.result_types["classification"]][f"precision_{i}"] = precision[i]
-            self.metrics[self.result_types["classification"]][f"recall_{i}"] = recall[i]
-            self.metrics[self.result_types["classification"]][f"f_score_{i}"] = f_score[i]
-            for j in range(num_concepts):
-                self.metrics[self.result_types["classification"]][f"cm_{i}{j}"] = confusion_matrix[i, j]
 
     def create_tables(self):
         with self.config.db.get_connection() as conn:

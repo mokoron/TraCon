@@ -30,10 +30,6 @@ class Configuration:
         self._parser.add_argument("-dbS", "--dbSchema", is_config_file=False, help="Schema to use in postgre db")
         self._parser.add_argument("-ct", "--configTable", is_config_file=False, help="Table to store configurations of runs")
         self._parser.add_argument("-srt", "--speedResultTable", is_config_file=False, help="Table to store speed results of runs")
-        self._parser.add_argument("-lrt", "--labelResultTable", is_config_file=False, help="Table to store label results of runs")
-        self._parser.add_argument("-crt", "--classificationResultTable", is_config_file=False, help="Table to store classification results of runs")
-        self._parser.add_argument("-rV", "--resultView", is_config_file=False, help="Name of view of joint config result tables")
-
 
     def add_entry(self, short, long, help, type=str, nargs='*'):
         self._parser.add("-"+short, "--"+long, help=help, is_config_file=False, type=type, nargs=nargs)

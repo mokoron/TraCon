@@ -89,22 +89,6 @@ def setup_evaluation(evaluation):
     evaluation.add_metric("bestid", int)
     evaluation.add_metric("time_spent", float)
 
-    # label
-    evaluation.add_metric("l_mae", float, result_type="label")
-    evaluation.add_metric("l_mape", float, result_type="label")
-    evaluation.add_metric("l_rmse", float, result_type="label")
-    evaluation.add_metric("l_bestid", int, result_type="label")
-    evaluation.add_metric("l_time_spent", float, result_type="label")
-
-    # classification
-    num_concepts = 4
-    for i in range(num_concepts):
-        evaluation.add_metric(f"precision_{i}", float, result_type="classification")
-        evaluation.add_metric(f"recall_{i}", float, result_type="classification")
-        evaluation.add_metric(f"f_score_{i}", float, result_type="classification")
-        for j in range(num_concepts):
-            evaluation.add_metric(f"cm_{i}{j}", int, result_type="classification")
-
 
 class PredictorThread(threading.Thread):
     def __init__(self, threadID, name, config):
