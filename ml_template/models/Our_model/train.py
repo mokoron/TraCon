@@ -58,22 +58,6 @@ class ConceptClassifierThread(threading.Thread):
             # label_results=[mae, mape, rmse], classification_results=[conf_matrix, precision, recall, f_score]
             label_results, classification_results, bestid, time_spent = concept_classifier(self.our_config)
 
-            # get metrics concept classifier
-
-            # prepare evaluation
-            self.our_config.model_name = our_model
-            self.our_config.id = register_run(self.our_config)
-            our_evaluation = Evaluation(self.our_config)
-            setup_evaluation(our_evaluation)
-
-            ## labels
-            our_evaluation.compute_label_metric(label_results, bestid, time_spent)
-
-            # save label results into the data base
-            print('Storing of the labels results ...')
-            our_evaluation.store_results(result_type="label")
-            print('label results stored successfully')
-
             print("ABOUT TO RELEASE LOCK")
 
 

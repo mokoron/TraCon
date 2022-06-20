@@ -46,7 +46,6 @@ def setup_config(config):
     config.add_model_entry("aptonly", "whether only adaptive adj", action='store_true')
     config.add_model_entry("addaptadj", "whether add adaptive adj", action='store_true')
     config.add_model_entry("randomadj", "whether random initialize adaptive adj", action='store_true')
-    # config.add_model_entry("dow", "")
 
     config.add_entry("sn", "snorm", "1 if we want the spatial normalization", type=int)
     config.add_entry("tn", "tnorm", "1 if we want the  temporal normalization", type=int)
